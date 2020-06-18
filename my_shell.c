@@ -17,7 +17,19 @@ char ** get_args(char * command)
     token = strtok(NULL, " ");
     args[count++] = token;
    }while( token != NULL );
-   return args;
+  return args;
+}
+
+void cd(char ** args)
+{
+  char path[200];
+  if (strncmp(args[1],"/",1)!=0)
+  {
+  getcwd(path,sizeof(path));
+  strcat(path,"/");
+  }  
+  strcat(path,args[1]);
+  chdir(path);
 }
 
 int main(void)
@@ -32,6 +44,12 @@ int main(void)
     char command[255];
     gets(command);
     char ** args = get_args(command);
+
+    if (strcmp(args[0],"cd")==0)
+    {
+      cd(args);
+      continue;
+    }
     int pid = fork();
     if (pid == 0)
     {
@@ -42,7 +60,7 @@ int main(void)
     else
     {
       wait(NULL);
-      printf("\n");
     }
+  printf("\n");
   }
 }
