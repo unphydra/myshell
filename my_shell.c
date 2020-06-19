@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <signal.h>
+#include "colors.h"
 
 char ** get_args(char * command)
 {
@@ -44,9 +45,9 @@ int main(void)
 {
   while (1)
   {
-    printf("\033[1;31m");
+    cyan();
     printf("my-shell $ ");
-    printf("\033[0m");
+    reset();
 
     signal(SIGINT,SIG_IGN);
     char command[255];
@@ -63,6 +64,11 @@ int main(void)
     {
       signal(SIGINT,SIG_DFL);
       int result = execvp(args[0],args);
+      if (result < 0)
+      {
+        printf("my-shell: command not found: %s\n",args[0]);
+      }
+      
       exit(0);
     }
     else
