@@ -10,7 +10,10 @@
 #include "colors.h"
 #include "command.h"
 
-void call_child(char** args);
-char ** get_args(char * command);
+typedef char * String ;
+typedef String * String_ptr;
+
+void call_child(String_ptr args);
+String_ptr get_args(String command);
 
 #endif

@@ -1,6 +1,6 @@
 #include "my_shell.h"
 
-void call_child(char** args)
+void call_child(String_ptr args)
 {
   int pid = fork();
   if (pid == 0)
