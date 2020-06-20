@@ -10,4 +10,11 @@ typedef struct
 } File_lines;
 typedef File_lines * File_lines_ptr;
 
+typedef struct
+{
+  String PS1;
+}Env_data;
+
+typedef Env_data * Env_data_ptr;
+
 #endif

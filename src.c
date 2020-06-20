@@ -22,7 +22,7 @@ void call_child(String_ptr args)
   printf("\n");
 }
 
-String_ptr get_args(String command, String spliter)
+String_ptr string_spliter(String command, String spliter)
 {
   int len = strlen(command);
   String_ptr args = malloc(sizeof(String) * len);
