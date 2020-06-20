@@ -13,6 +13,6 @@
 #include "file_parser.h"
 
 void call_child(String_ptr args);
-String_ptr get_args(String command);
+String_ptr get_args(String, String);
 
 #endif

@@ -11,7 +11,7 @@ int main(void)
     signal(SIGINT,SIG_IGN);
     char command[255];
     gets(command);
-    String_ptr args = get_args(command);
+    String_ptr args = get_args(command, " ");
 
     if (strcmp(args[0],"cd")==0)
     {

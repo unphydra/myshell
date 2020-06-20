@@ -22,15 +22,15 @@ void call_child(String_ptr args)
   printf("\n");
 }
 
-String_ptr get_args(String command)
+String_ptr get_args(String command, String spliter)
 {
   int len = strlen(command);
   String_ptr args = malloc(sizeof(String) * len);
   int count = 0;
-  String token = strtok(command, " ");
+  String token = strtok(command, spliter);
   args[count++] = token;
   do {
-    token = strtok(NULL, " ");
+    token = strtok(NULL, spliter);
     args[count++] = token;
    }while( token != NULL );
   return args;
