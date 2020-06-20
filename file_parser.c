@@ -17,6 +17,7 @@ File_lines_ptr read_file(String path)
   if (fgets(line,LINE_LENGTH,fptr) == NULL)
   {
     fclose(fptr);
+    file->number = count;
     return file;
   }
   file->lines[count++] = line;
