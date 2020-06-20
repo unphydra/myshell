@@ -1,4 +1,5 @@
 #include "my_shell.h"
+#include "typedef.h"
 
 void call_child(String_ptr args)
 {
@@ -21,12 +22,12 @@ void call_child(String_ptr args)
   printf("\n");
 }
 
-char ** get_args(char * command)
+String_ptr get_args(String command)
 {
   int len = strlen(command);
-  char ** args = malloc(sizeof(char*)*len);
+  String_ptr args = malloc(sizeof(String) * len);
   int count = 0;
-  char * token = strtok(command, " ");
+  String token = strtok(command, " ");
   args[count++] = token;
   do {
     token = strtok(NULL, " ");

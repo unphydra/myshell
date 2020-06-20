@@ -9,9 +9,8 @@
 #include <signal.h>
 #include "colors.h"
 #include "command.h"
-
-typedef char * String ;
-typedef String * String_ptr;
+#include "typedef.h"
+#include "file_parser.h"
 
 void call_child(String_ptr args);
 String_ptr get_args(String command);
