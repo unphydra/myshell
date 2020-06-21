@@ -7,8 +7,8 @@ typedef struct
 {
   String_ptr lines;
   int number;
-} File_lines;
-typedef File_lines * File_lines_ptr;
+} Dynamic_strings;
+typedef Dynamic_strings * Dynamic_strings_ptr;
 
 typedef struct
 {

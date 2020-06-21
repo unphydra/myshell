@@ -22,18 +22,20 @@ int main(void)
     Process_stream ps = {stdin,stdout};
     fgets(command,255,ps.input);
     remove_new_line(command);
+
+    sleep(1);
     if (strlen(command)==0)
     {
       continue;
     }
-    String_ptr args = string_spliter(command, " ");
+    Dynamic_strings_ptr args = string_spliter(command, " ");
 
-    if (strcmp(args[0],"cd")==0)
+    if (strcmp(args->lines[0],"cd")==0)
     {
-      cd(args);
+      cd(args->lines);
       continue;
     }
-    if (strcmp(args[0],"exit")==0) exit(0);
-    call_child(args,ps);
+    if (strcmp(args->lines[0],"exit")==0) exit(0);
+    call_child(args->lines,ps);
   }
 }

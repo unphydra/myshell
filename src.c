@@ -30,18 +30,20 @@ void call_child(String_ptr args, Process_stream ps)
   }
 }
 
-String_ptr string_spliter(String command, String spliter)
+Dynamic_strings_ptr string_spliter(String command, String spliter)
 {
   int len = strlen(command);
-  String_ptr args = malloc(sizeof(String) * len);
+  Dynamic_strings_ptr args = malloc(sizeof(Dynamic_strings));
+  args->lines = malloc(sizeof(String) * len);
   int count = 0;
   String token = strtok(command, spliter);
-  args[count++] = token;
+  args->lines[count++] = token;
   do {
     token = strtok(NULL, spliter);
-    args[count++] = token;
+    args->lines[count++] = token;
    }while( token != NULL );
-   args[++count] = NULL;
+   args->lines[++count] = NULL;
+   args->number = count;
   return args;
 }
 

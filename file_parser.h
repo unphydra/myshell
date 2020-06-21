@@ -7,7 +7,7 @@
 
 #define LINE_LENGTH sizeof(char) * 80
 
-File_lines_ptr read_file(String);
+Dynamic_strings_ptr read_file(String);
 Env_data_ptr parse_lines_of_env(void);
 
 #endif

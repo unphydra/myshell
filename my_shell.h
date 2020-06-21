@@ -13,7 +13,7 @@
 #include "file_parser.h"
 
 void call_child(String_ptr args, Process_stream ps);
-String_ptr string_spliter(String, String);
+Dynamic_strings_ptr string_spliter(String, String);
 void parse_ps_one(String line);
 
 #endif
