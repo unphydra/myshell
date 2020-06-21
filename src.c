@@ -1,6 +1,8 @@
 #include "my_shell.h"
 #include "typedef.h"
 
+int status = 0;
+
 void call_child(String_ptr args, Process_stream ps)
 {  
   int * link = malloc(sizeof(int)*2);
@@ -27,6 +29,9 @@ void call_child(String_ptr args, Process_stream ps)
     fprintf(ps.output,"%s",line);
     memset(line,0,4096);
     }
+    int child_status;
+    waitpid(pid,&child_status,1);
+    status = WEXITSTATUS(child_status);
   }
 }
 
@@ -67,6 +72,17 @@ void show_path()
   printf("%s",path);
 }
 
+void show_status()
+{
+  if (status == 0)
+  {
+    call_color("green");
+  } else
+  {
+    call_color("red");
+  }
+}
+
 void parse_ps_one(String line)
 {
   String curr = line;
@@ -85,8 +101,8 @@ void parse_ps_one(String line)
       String txt = malloc(20);
       curr++;
       get_sub_string(&curr,txt,'}');
-      Fun_store fs[] = {{&show_path,"pwd"}};
-      for (size_t i = 0; i < 1; i++)
+      Fun_store fs[] = {{&show_path,"pwd"},{&show_status,"status"}};
+      for (size_t i = 0; i < 2; i++)
       {
         if (strcmp(txt,fs[i].name)==0)
         {
