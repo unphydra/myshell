@@ -1,25 +1,33 @@
 #include "my_shell.h"
 #include "typedef.h"
 
-void call_child(String_ptr args)
-{
+void call_child(String_ptr args, Process_stream ps)
+{  
+  int * link = malloc(sizeof(int)*2);
+  pipe(link);
   int pid = fork();
   if (pid == 0)
   {
     signal(SIGINT,SIG_DFL);
+    dup2(link[1],1);
+    close(link[0]);
+    close(link[1]);
     int result = execvp(args[0],args);
     if (result < 0)
     {
       printf("my-shell: command not found: %s\n",args[0]);
     }
-    
-    exit(0);
+    exit(result);
   }
   else
   {
-    wait(NULL);
+    close(link[1]);
+    String line = malloc(4096);
+    while(read(link[0], line, 4096)){
+    fprintf(ps.output,"%s",line);
+    memset(line,0,4096);
+    }
   }
-  printf("\n");
 }
 
 String_ptr string_spliter(String command, String spliter)
@@ -33,6 +41,7 @@ String_ptr string_spliter(String command, String spliter)
     token = strtok(NULL, spliter);
     args[count++] = token;
    }while( token != NULL );
+   args[++count] = NULL;
   return args;
 }
 

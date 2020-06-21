@@ -17,4 +17,12 @@ typedef struct
 
 typedef Env_data * Env_data_ptr;
 
+typedef struct
+{
+  FILE * input;
+  FILE * output;
+} Process_stream;
+
+typedef Process_stream * Process_stream_ptr;
+
 #endif
