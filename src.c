@@ -36,6 +36,19 @@ String_ptr string_spliter(String command, String spliter)
   return args;
 }
 
+String get_sub_string(String_ptr source, String dest, char delim)
+{
+  String_ptr curr = source;
+  int count = 0;
+  while (**curr != delim)
+  {
+    dest[count++] = **curr;
+    (*curr)++;
+  }
+  dest[++count] = '\0';
+  return dest;
+}
+
 void parse_ps_one(String line)
 {
   String curr = line;
@@ -46,23 +59,13 @@ void parse_ps_one(String line)
       String color = malloc(10);
       int count = 0;
       curr++;
-      while (*curr!=']')
-      {
-        color[count++] = *curr;
-        curr++;
-      }
-      color[++count] = '\0';
+      get_sub_string(&curr,color,']');
       call_color(color);
       curr++;
     } else
     {
       String txt = malloc(20);
-      int count = 0;
-      while (*curr!='[')
-      {
-        txt[count++] = *curr;
-        curr++;
-      }
+      get_sub_string(&curr,txt,'[');
       printf("%s",txt);
     }
   }
