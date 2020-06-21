@@ -14,5 +14,6 @@
 
 void call_child(String_ptr args);
 String_ptr string_spliter(String, String);
+void parse_ps_one(String line);
 
 #endif

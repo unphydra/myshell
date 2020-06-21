@@ -2,11 +2,10 @@
 
 int main(void)
 {
+  Env_data_ptr env = parse_lines_of_env();
   while (1)
   {
-    cyan();
-    printf("my-shell $ ");
-    reset();
+    parse_ps_one(env->PS1);
 
     signal(SIGINT,SIG_IGN);
     char command[255];

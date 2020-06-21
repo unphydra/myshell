@@ -51,3 +51,15 @@ void cyan () {
 void reset () {
   printf("\033[0m");
 }
+
+void call_color(char * color)
+{
+  Colors_store store[] = {{&bRed,"bRed"},{&red,"red"},{&bGreen,"bGreen"},{&green,"green"},{&bYellow,"bYellow"},{&yellow,"yellow"},{&bBlue,"bBlue"},{&blue,"blue"},{&bMagenta,"bMagenta"},{&magenta,"magenta"},{&bCyan,"bCyan"},{&cyan,"cyan"},{&reset,"res"}};
+  for (size_t i = 0; i < 13; i++)
+  {
+    if (strcmp(store[i].name,color)==0)
+    {
+      store[i].fn_ptr();
+    }
+  }
+}

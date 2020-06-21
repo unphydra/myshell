@@ -1,0 +1,1 @@
+PS1=[blue]hello[yellow]myshell[cyan]-> [res]
