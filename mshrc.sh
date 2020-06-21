@@ -1,1 +1,1 @@
-PS1=[blue]hello[yellow]myshell[cyan]-> [res]
+PS1=[blue]({pwd})[yellow]myshell[cyan]-> [res]

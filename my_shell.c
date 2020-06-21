@@ -23,7 +23,6 @@ int main(void)
     fgets(command,255,ps.input);
     remove_new_line(command);
 
-    sleep(1);
     if (strlen(command)==0)
     {
       continue;

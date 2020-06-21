@@ -25,4 +25,11 @@ typedef struct
 
 typedef Process_stream * Process_stream_ptr;
 
+typedef void (*Fn_ptr)(void);
+typedef struct 
+{
+  Fn_ptr fn_ptr;
+  char * name;
+} Fun_store;
+
 #endif

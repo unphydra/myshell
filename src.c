@@ -60,6 +60,13 @@ String get_sub_string(String_ptr source, String dest, char delim)
   return dest;
 }
 
+void show_path()
+{
+  char path[100];
+  getcwd(path,100);
+  printf("%s",path);
+}
+
 void parse_ps_one(String line)
 {
   String curr = line;
@@ -73,10 +80,37 @@ void parse_ps_one(String line)
       get_sub_string(&curr,color,']');
       call_color(color);
       curr++;
-    } else
+    } else if(*curr == '{')
     {
       String txt = malloc(20);
-      get_sub_string(&curr,txt,'[');
+      curr++;
+      get_sub_string(&curr,txt,'}');
+      Fun_store fs[] = {{&show_path,"pwd"}};
+      for (size_t i = 0; i < 1; i++)
+      {
+        if (strcmp(txt,fs[i].name)==0)
+        {
+          fs[i].fn_ptr();
+        }
+      }
+      curr++;
+    } 
+    else
+    {
+      String txt = malloc(20);
+      int count = 0;
+      char a = *curr;
+      while (1)
+      {
+        if ((strncmp(curr,"[",1)==0)||(strncmp(curr,"{",1)==0))
+        {
+          break;
+        }
+        txt[count++] = *curr;
+        curr++;
+        a= *curr;
+      }
+      txt[++count] = '\0';
       printf("%s",txt);
     }
   }
